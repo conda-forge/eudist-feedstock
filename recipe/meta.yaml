@@ -12,7 +12,7 @@ source:
 build:
   script: {{ PYTHON }} -m pip install . -vv
   number: 1
-  skip: True  # [win]
+  skip: True  # [win or (osx and python_impl == 'pypy')]
 
 requirements:
   build:
