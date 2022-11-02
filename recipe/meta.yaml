@@ -1,5 +1,5 @@
 {% set name = "eudist" %}
-{% set version = "0.1.4" %}
+{% set version = "0.1.5" %}
 
 package:
   name: {{ name|lower }}
@@ -7,12 +7,12 @@ package:
 
 source:
   url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/eudist-{{ version }}.tar.gz
-  sha256: 587caf9ab5e204b4c86a2f75551a973f37059fe146ca93a44270fc2279218a45
+  sha256: 007e9d147de3d61578f263eabe3766bc8eff07e211a6b0d62aa8179cddb8d02b
 
 build:
   script: {{ PYTHON }} -m pip install . -vv
-  number: 1
-  skip: True  # [win]
+  number: 0
+  skip: true  # [win]
 
 requirements:
   build:
