@@ -1,5 +1,5 @@
 diff --git a/eudist.pyx b/eudist.pyx
-index 9f3a289..7f09637 100644
+index 9f3a289..cabd0e4 100644
 --- a/eudist.pyx
 +++ b/eudist.pyx
 @@ -3,7 +3,7 @@
@@ -7,7 +7,46 @@ index 9f3a289..7f09637 100644
  # distutils: library_dirs =
  # distutils: sources = eudist_cpp.cxx
 -# distutils: extra_compile_args = -std=c++11
-+# distutils: extra_compile_args = -std=c++11 /TP /Za
++# distutils: extra_compile_args =
  
  cimport eudist_cpp as c
  cimport numpy as np
+diff --git a/setup.py b/setup.py
+index 84c64d8..0ede47d 100644
+--- a/setup.py
++++ b/setup.py
+@@ -1,4 +1,5 @@
+ from setuptools import Extension, setup
++import os
+ 
+ incdir = ""
+ try:
+@@ -26,6 +27,7 @@ __version_tuple__ = version_tuple = ({', '.join([repr(x) for x in version.split(
+ except ImportError:
+     # For some reason setuptool does not install cython, so it is better to error out
+     raise
++
+     # Ignore error, as otherwise setuptools doesn't know we need cython
+     def cythonize(*args, **kwargs):
+         pass
+@@ -33,7 +35,19 @@ except ImportError:
+ 
+ sourcefiles = ["eudist.pyx", "eudist_cpp.cxx"]
+ 
+-extensions = [Extension("eudist", sourcefiles, include_dirs=[incdir])]
++if os.name == "nt":
++    extra_compile_args = ["/TP", "/Za"]
++else:
++    extra_compile_args = ["-std=c++11"]
++
++extensions = [
++    Extension(
++        "eudist",
++        sourcefiles,
++        include_dirs=[incdir],
++        extra_compile_args=extra_compile_args,
++    )
++]
+ 
+ setup(
+     use_scm_version=True,
