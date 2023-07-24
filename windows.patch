@@ -1,0 +1,13 @@
+diff --git a/eudist.pyx b/eudist.pyx
+index 9f3a289..7f09637 100644
+--- a/eudist.pyx
++++ b/eudist.pyx
+@@ -3,7 +3,7 @@
+ # distutils: libraries =
+ # distutils: library_dirs =
+ # distutils: sources = eudist_cpp.cxx
+-# distutils: extra_compile_args = -std=c++11
++# distutils: extra_compile_args = -std=c++11 /TP /Za
+ 
+ cimport eudist_cpp as c
+ cimport numpy as np
