@@ -12,7 +12,7 @@ index 9f3a289..cabd0e4 100644
  cimport eudist_cpp as c
  cimport numpy as np
 diff --git a/setup.py b/setup.py
-index 84c64d8..38c5c61 100644
+index 84c64d8..1f89a76 100644
 --- a/setup.py
 +++ b/setup.py
 @@ -1,4 +1,5 @@
@@ -35,7 +35,7 @@ index 84c64d8..38c5c61 100644
  
 -extensions = [Extension("eudist", sourcefiles, include_dirs=[incdir])]
 +if os.name == "nt":
-+    extra_compile_args = ["/TP"]
++    extra_compile_args = ["/TP", "/permissive-"]
 +else:
 +    extra_compile_args = ["-std=c++11"]
 +
