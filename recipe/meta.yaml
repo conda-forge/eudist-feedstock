@@ -8,11 +8,12 @@ package:
 source:
   url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/eudist-{{ version }}.tar.gz
   sha256: 1f0805eb0af592907584b10ebefb6c1636d34d7ff0e08726515176e55200000c
+  patches:
+    - "windows.patch" # the patch file is expected to be found in the recipe
 
 build:
   script: {{ PYTHON }} -m pip install . -vv
-  number: 1
-  skip: true  # [win]
+  number: 2
 
 requirements:
   build:
