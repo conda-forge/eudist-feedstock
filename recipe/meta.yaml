@@ -1,19 +1,19 @@
 {% set name = "eudist" %}
-{% set version = "0.1.6" %}
+{% set version = "0.1.8" %}
 
 package:
   name: {{ name|lower }}
   version: {{ version }}
 
 source:
-  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/eudist-{{ version }}.tar.gz
-  sha256: 1f0805eb0af592907584b10ebefb6c1636d34d7ff0e08726515176e55200000c
+  url: https://pypi.org/packages/source/{{ name[0] }}/{{ name }}/eudist-{{ version }}.tar.gz
+  sha256: 940a761e236f9e246bbd71d011f34f09b8a43c5763a8b43ddb9a211a32b4afbb
   patches:
     - "windows.patch" # the patch file is expected to be found in the recipe
 
 build:
   script: {{ PYTHON }} -m pip install . -vv
-  number: 4
+  number: 0
 
 requirements:
   build:
